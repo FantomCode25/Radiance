@@ -1,0 +1,27 @@
+[
+  {
+    "category": "Journals",
+    "name": "Mindfulness Journal",
+    "description": "Track your emotions and self-growth daily.",
+    "price": "₹500",
+    "image": "https://example.com/journal.jpg",
+    "link": "https://yourstore.com/mindfulness-journal"
+  },
+  {
+    "category": "Books",
+    "name": "The Happiness Project",
+    "description": "Learn how to boost happiness and reduce stress.",
+    "price": "₹899",
+    "image": "https://example.com/book.jpg",
+    "link": "https://yourstore.com/happiness-project"
+  },
+  {
+    "category": "Gadgets",
+    "name": "Stress Relief Ball",
+    "description": "Squeeze your stress away anytime, anywhere.",
+    "price": "₹1200",
+    "image": "https://example.com/ball.jpg",
+    "link": "https://yourstore.com/stress-ball"
+  }
+]
+
