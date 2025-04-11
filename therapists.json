@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Dr. Meera Sharma",
+    "age": 35,
+    "speciality": "Anxiety and Depression",
+    "cost": 1000,
+    "image": "https://example.com/meera.jpg",
+    "id":"t1"
+  },
+  {
+    "name": "Dr. Arjun Kapoor",
+    "age": 40,
+    "speciality": "Relationship Counseling",
+    "cost": 1200,
+    "image": "https://example.com/arjun.jpg",
+    "id":"t2"
+  }
+]
+
