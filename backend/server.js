@@ -10,6 +10,7 @@ import { fileURLToPath } from "url";
 import { dirname } from "path";
 
 import authRoutes from "./routes/auth.routes.js";
+import therapistRoutes from "./routes/therapist.routes.js";
 import connectToMongoDB from "./db/connectToMongoDB.js";
 
 dotenv.config();
@@ -35,6 +36,7 @@ app.use(
 
 // API routes
 app.use("/api/auth", authRoutes);
+app.use("/api/therapist", therapistRoutes);
 
 // Serve frontend
 if (!isDev) {

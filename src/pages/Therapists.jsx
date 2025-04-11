@@ -12,7 +12,7 @@ const therapistsData = [
     id: '1',
     name: 'Dr. Sarah Johnson',
     age: 38,
-    image: '/therapist-1.jpg',
+    image: 'https://th.bing.com/th/id/OIP.fHQLoRHHL5muo5fYYqMhNAHaE8?w=295&h=197&c=7&r=0&o=5&dpr=1.3&pid=1.7',
     rating: 4.9,
     specialization: 'Anxiety',
     experience: 12,

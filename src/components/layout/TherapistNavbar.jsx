@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import { Menu, X, User, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import MentalHealthDropdown from './MentalHealthDropdown';
-import { useAuth } from '@/hooks/useAuth';
+import { useTherapistAuth } from '@/hooks/useTherapistAuth';
 
-const Navbar = () => {
+const TherapistNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout } = useTherapistAuth();
 
   return (
     <nav className="bg-white shadow-sm sticky top-0 z-50">
@@ -26,9 +26,7 @@ const Navbar = () => {
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
-            <Link to="/quiz" className="text-gray-700 hover:text-oasis-primary">Mental Assessment</Link>
-            <Link to="/therapists" className="text-gray-700 hover:text-oasis-primary">Therapists</Link>
-            <Link to="/products" className="text-gray-700 hover:text-oasis-primary">Wellness Products</Link>
+            <Link to="/dashboard" className="text-gray-700 hover:text-oasis-primary">Dashboard</Link>
             <MentalHealthDropdown />
             
             {isAuthenticated ? (
@@ -59,11 +57,6 @@ const Navbar = () => {
                     Sign Up
                   </Button>
                 </Link>
-                <Link to="/therapist-login">
-                  <Button variant="outline" className="border-oasis-primary text-oasis-primary hover:bg-oasis-primary hover:text-white">
-                    Therapist Login
-                  </Button>
-                </Link>
               </div>
             )}
           </div>
@@ -84,25 +77,11 @@ const Navbar = () => {
           <div className="md:hidden mt-4 pb-4 animate-fade-in">
             <div className="flex flex-col space-y-4">
               <Link 
-                to="/quiz" 
+                to="/dashboard" 
                 className="text-gray-700 hover:text-oasis-primary py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Mental Assessment
-              </Link>
-              <Link 
-                to="/therapists" 
-                className="text-gray-700 hover:text-oasis-primary py-2"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Therapists
-              </Link>
-              <Link 
-                to="/products" 
-                className="text-gray-700 hover:text-oasis-primary py-2"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Wellness Products
+                Dashboard
               </Link>
               <MentalHealthDropdown isMobile={true} />
               
@@ -130,7 +109,7 @@ const Navbar = () => {
               ) : (
                 <>
                   <Link 
-                    to="/login" 
+                    to="/therapy-login" 
                     className="w-full"
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -139,21 +118,12 @@ const Navbar = () => {
                     </Button>
                   </Link>
                   <Link 
-                    to="/signup" 
+                    to="/therapy-signup" 
                     className="w-full"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     <Button className="bg-oasis-primary text-white w-full">
                       Sign Up
-                    </Button>
-                  </Link>
-                  <Link 
-                    to="/therapist-signup" 
-                    className="w-full"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    <Button className="bg-oasis-primary text-white w-full">
-                      Therapist Sign Up
                     </Button>
                   </Link>
                 </>
@@ -166,4 +136,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default TherapistNavbar;

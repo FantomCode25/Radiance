@@ -5,9 +5,12 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./hooks/useAuth";
+import { TherapistAuthProvider } from "./hooks/useTherapistAuth";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
+import TherapistLogin from "./pages/TherapistLogin";
 import Signup from "./pages/Signup";
+import TherapistSignup from "./pages/TherapistSignup";
 import Quiz from "./pages/Quiz";
 import Therapists from "./pages/Therapists";
 import TherapistSession from "./pages/TherapistSession";
@@ -25,20 +28,24 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <AuthProvider>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/quiz" element={<Quiz />} />
-              <Route path="/therapists" element={<Therapists />} />
-              <Route path="/therapists/:id/session" element={<TherapistSession />} />
-              <Route path="/users/:id/session" element={<TherapistSession />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </AuthProvider>
+          <TherapistAuthProvider>
+            <AuthProvider>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/therapist-login" element={<TherapistLogin />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/therapist-signup" element={<TherapistSignup />} />
+                <Route path="/quiz" element={<Quiz />} />
+                <Route path="/therapists" element={<Therapists />} />
+                <Route path="/therapists/:id/session" element={<TherapistSession />} />
+                <Route path="/users/:id/session" element={<TherapistSession />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </AuthProvider>
+          </TherapistAuthProvider>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
