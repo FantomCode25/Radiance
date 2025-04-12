@@ -67,7 +67,7 @@ const TherapistSession = () => {
     toast({
       title: "Session ended",
       description:
-        "Your therapy session has ended. Thank you for using Mental Oasis.",
+        "Your therapy session has ended. Thank you for using ZenZone.",
     });
   };
 

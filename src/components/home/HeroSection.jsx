@@ -36,7 +36,7 @@ const HeroSection = () => {
             />
             <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm p-4 rounded-lg shadow-md max-w-[200px]">
               <p className="text-sm font-medium text-oasis-primary">
-                "Mental Oasis helped me find my balance again. The therapists are amazing!"
+                "ZenZone helped me find my balance again. The therapists are amazing!"
               </p>
               <p className="text-xs text-gray-500 mt-2">- Sarah T., Client</p>
             </div>

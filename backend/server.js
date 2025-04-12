@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 import path from "path";
 import cors from "cors";
 import http from "http";
-import { Server as SocketIOServer } from "socket.io";
+import { Server } from "socket.io";
 
 import authRoutes from "./routes/auth.routes.js";
 import therapistRoutes from "./routes/therapist.routes.js";
@@ -13,13 +13,13 @@ import connectToMongoDB from "./db/connectToMongoDB.js";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
-
-
 dotenv.config();
 const PORT =  5001;
 const isDev = process.env.NODE_ENV !== "production";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+console.log(__dirname);
+
 
 // Create Express app
 const app = express();
@@ -35,6 +35,11 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
+// Add this to your server.js before any other routes
+app.get('/pathToRegexpError', (req, res) => {
+  res.status(400).send('Invalid route');
+});
 
 // API routes
 app.use("/api/auth", authRoutes);
@@ -52,7 +57,7 @@ if (!isDev) {
 const server = http.createServer(app);
 
 // Initialize Socket.IO
-const io = new SocketIOServer(server, {
+const io = new Server(server, {
   cors: {
     origin: isDev ? "http://localhost:8080" : process.env.CLIENT_URL,
     methods: ["GET", "POST"]
@@ -89,6 +94,20 @@ io.on('connection', (socket) => {
   socket.on("disconnect", () => {
     console.log("User disconnected:", socket.id);
   });
+});
+
+// Add this before your route definitions in server.js
+app.use((req, res, next) => {
+  try {
+    next();
+  } catch (error) {
+    if (error.message && error.message.includes('Missing parameter name')) {
+      console.error('Path-to-regexp error caught:', error.message);
+      res.status(400).send('Invalid route parameter format');
+    } else {
+      next(error);
+    }
+  }
 });
 
 // Start server

@@ -18,10 +18,10 @@ const TherapistNavbar = () => {
           <Link to="/" className="flex items-center">
             <img 
               src="/logo.svg" 
-              alt="Mental Oasis Logo" 
+              alt="ZenZone Logo" 
               className="h-10 mr-2" 
             />
-            <span className="text-xl font-medium text-oasis-dark">Mental Oasis</span>
+            <span className="text-xl font-medium text-oasis-dark">ZenZone</span>
           </Link>
           
           {/* Desktop Navigation */}

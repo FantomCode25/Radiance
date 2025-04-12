@@ -81,7 +81,7 @@ export const TherapistAuthProvider = ({ children }) => {
 
       toast({
         title: "Account created",
-        description: "Welcome to Mental Oasis!",
+        description: "Welcome to ZenZone!",
       });
 
       navigate("/quiz");
@@ -111,7 +111,7 @@ export const TherapistAuthProvider = ({ children }) => {
 
       toast({
         title: "Google login successful",
-        description: "Welcome to Mental Oasis!",
+        description: "Welcome to ZenZone!",
       });
 
       navigate("/");

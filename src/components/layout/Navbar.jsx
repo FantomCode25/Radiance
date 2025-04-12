@@ -18,7 +18,7 @@ const Navbar = () => {
           <Link to="/" className="flex items-center">
             <img 
               src="/logo.png" 
-              alt="Mental Oasis Logo" 
+              alt="ZenZone Logo" 
               className="h-10 mr-2" 
             />
             <span className="text-xl font-medium text-oasis-dark">ZenZone</span>

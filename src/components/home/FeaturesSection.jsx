@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Brain, Calendar, ShoppingBag, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { FaDiscord } from 'react-icons/fa';
 
 const FeaturesSection = () => {
   const features = [
@@ -28,11 +29,11 @@ const FeaturesSection = () => {
       linkText: "Shop Products"
     },
     {
-      title: "Know About Mental Health",
-      description: "Access educational resources and expert insights about various mental health topics.",
-      icon: <BookOpen className="w-12 h-12 text-oasis-primary" />,
-      link: "#mental-health-section",
-      linkText: "Learn More"
+      title: "Join Our Discord Server",
+      description: "Access our server to get therapy. There are many assisting bots which can be used by users and therapists",
+      icon: <FaDiscord className="w-12 h-12 text-oasis-primary" />,
+      link: "https://discord.gg/ZtsQUYgJDf",
+      linkText: "Join Now"
     }
   ];
 

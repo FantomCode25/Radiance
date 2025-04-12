@@ -160,13 +160,22 @@ const VideoChat = ({ therapistName, therapistImage, sessionDuration, onEndCall }
     // Create RTCPeerConnection with multiple STUN servers for better NAT traversal
     const configuration = {
       iceServers: [
+        // Keep existing STUN
         { urls: "stun:stun.l.google.com:19302" },
-        { urls: "stun:stun1.l.google.com:19302" },
-        { urls: "stun:stun2.l.google.com:19302" },
-        { urls: "stun:stun3.l.google.com:19302" },
-        { urls: "stun:stun4.l.google.com:19302" }
+        
+        // Add this FREE TURN server (temporary for testing)
+        {
+          urls: "turn:global.turn.twilio.com:3478?transport=udp",
+          username: "test",
+          credential: "test123"
+        },
+        {
+          urls: "turn:global.turn.twilio.com:3478?transport=tcp", 
+          username: "test",
+          credential: "test123"
+        }
       ],
-      iceCandidatePoolSize: 10
+      iceTransportPolicy: "all" // Keep this
     };
     
     peerConnectionRef.current = new RTCPeerConnection(configuration);

@@ -61,7 +61,7 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Mental Oasis theme colors
+				// ZenZone theme colors
 				"oasis": {
 					"primary": "#68a691",
 					"secondary": "#6e9ecf",

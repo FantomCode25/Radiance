@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 
 const testimonials = [
   {
-    quote: "Mental Oasis transformed my approach to therapy. The online sessions are convenient, and my therapist truly understands my needs. I've made more progress in 3 months than in years of traditional therapy.",
+    quote: "ZenZone transformed my approach to therapy. The online sessions are convenient, and my therapist truly understands my needs. I've made more progress in 3 months than in years of traditional therapy.",
     name: "Emma Thompson",
     role: "Teacher, 34",
     image: "/no-profile.png"
@@ -40,7 +40,7 @@ const TestimonialsSection = () => {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-oasis-dark">Client Stories</h2>
           <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-            Real experiences from people who found support through Mental Oasis
+            Real experiences from people who found support through ZenZone
           </p>
         </div>
 

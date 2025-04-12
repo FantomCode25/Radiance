@@ -98,7 +98,7 @@ export const AuthProvider = ({ children }) => {
       setUser(data);
       toast({
         title: "Account created successfully",
-        description: "Welcome to Mental Oasis!",
+        description: "Welcome to ZenZone!",
       });
 
       navigate('/quiz');
@@ -133,7 +133,7 @@ export const AuthProvider = ({ children }) => {
 
       toast({
         title: "Google login successful",
-        description: "Welcome to Mental Oasis!",
+        description: "Welcome to ZenZone!",
       });
 
       navigate("/");
