@@ -1,0 +1,19 @@
+[
+  {
+    "user": "JohnDoe#1234",
+    "userId": "445566778899",
+    "therapist": "Dr. Alice",
+    "date": "2025-04-12",
+    "time": "15:00",
+    "paid": true
+  },
+  {
+    "user": "JaneSmith#4321",
+    "userId": "112233445566",
+    "therapist": "Dr. Alice",
+    "date": "2025-04-13",
+    "time": "10:30",
+    "paid": false
+  }
+]
+
