@@ -6,18 +6,20 @@ import path from "path";
 import cors from "cors";
 import http from "http";
 import { Server as SocketIOServer } from "socket.io";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
 
 import authRoutes from "./routes/auth.routes.js";
 import therapistRoutes from "./routes/therapist.routes.js";
 import connectToMongoDB from "./db/connectToMongoDB.js";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+
 
 dotenv.config();
-const PORT = process.env.PORT || 5001;
+const PORT =  5001;
+const isDev = process.env.NODE_ENV !== "production";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const isDev = process.env.NODE_ENV !== "production";
 
 // Create Express app
 const app = express();

@@ -5,192 +5,96 @@ import Footer from '@/components/layout/Footer';
 import TherapistCard from '@/components/therapists/TherapistCard';
 import TherapistFilters from '@/components/therapists/TherapistFilters';
 import { useAuth } from '@/hooks/useAuth';
-
-// Mock data for therapists
-const therapistsData = [
-  {
-    id: '1',
-    name: 'Dr. Sarah Johnson',
-    age: 38,
-    image: 'https://th.bing.com/th/id/OIP.fHQLoRHHL5muo5fYYqMhNAHaE8?w=295&h=197&c=7&r=0&o=5&dpr=1.3&pid=1.7',
-    rating: 4.9,
-    specialization: 'Anxiety',
-    experience: 12,
-    education: 'Ph.D. in Clinical Psychology, Stanford University',
-    languages: ['English', 'Spanish'],
-    pricePerSession: 120,
-    availability: 'Weekdays, Evenings'
-  },
-  {
-    id: '2',
-    name: 'Dr. Michael Chen',
-    age: 45,
-    image: '/therapist-2.jpg',
-    rating: 4.7,
-    specialization: 'Depression',
-    experience: 15,
-    education: 'Ph.D. in Psychology, Harvard University',
-    languages: ['English', 'Mandarin'],
-    pricePerSession: 130,
-    availability: 'Weekdays, Weekends'
-  },
-  {
-    id: '3',
-    name: 'Dr. Emily Rodriguez',
-    age: 32,
-    image: '/therapist-3.jpg',
-    rating: 4.8,
-    specialization: 'Relationship Issues',
-    experience: 8,
-    education: 'Psy.D. in Clinical Psychology, UCLA',
-    languages: ['English', 'Spanish'],
-    pricePerSession: 110,
-    availability: 'Evenings, Weekends'
-  },
-  {
-    id: '4',
-    name: 'Dr. James Wilson',
-    age: 41,
-    image: '/therapist-4.jpg',
-    rating: 4.5,
-    specialization: 'Trauma & PTSD',
-    experience: 14,
-    education: 'Ph.D. in Clinical Psychology, Columbia University',
-    languages: ['English'],
-    pricePerSession: 135,
-    availability: 'Weekdays, Early Morning'
-  },
-  {
-    id: '5',
-    name: 'Dr. Aisha Patel',
-    age: 36,
-    image: '/therapist-5.jpg',
-    rating: 4.9,
-    specialization: 'Stress Management',
-    experience: 10,
-    education: 'Ph.D. in Counseling Psychology, University of Michigan',
-    languages: ['English', 'Hindi', 'Gujarati'],
-    pricePerSession: 125,
-    availability: 'Weekdays, Evenings'
-  },
-  {
-    id: '6',
-    name: 'Dr. Robert Kim',
-    age: 48,
-    image: '/therapist-6.jpg',
-    rating: 4.6,
-    specialization: 'Grief',
-    experience: 20,
-    education: 'Ph.D. in Clinical Psychology, NYU',
-    languages: ['English', 'Korean'],
-    pricePerSession: 140,
-    availability: 'Weekdays'
-  },
-  {
-    id: '7',
-    name: 'Dr. Lisa Thompson',
-    age: 39,
-    image: '/therapist-7.jpg',
-    rating: 4.8,
-    specialization: 'Self-Esteem',
-    experience: 11,
-    education: 'Ph.D. in Psychology, University of Chicago',
-    languages: ['English', 'French'],
-    pricePerSession: 115,
-    availability: 'Evenings, Weekends'
-  },
-  {
-    id: '8',
-    name: 'Dr. David Martinez',
-    age: 43,
-    image: '/therapist-8.jpg',
-    rating: 4.7,
-    specialization: 'Addiction',
-    experience: 16,
-    education: 'Psy.D. in Clinical Psychology, Rutgers University',
-    languages: ['English', 'Spanish'],
-    pricePerSession: 130,
-    availability: 'Weekdays, Weekends'
-  }
-];
+import axios from 'axios';
 
 const Therapists = () => {
-  const [filteredTherapists, setFilteredTherapists] = useState(therapistsData);
+  const [therapists, setTherapists] = useState([]);
+  const [filteredTherapists, setFilteredTherapists] = useState([]);
   const [filters, setFilters] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { isAuthenticated, isLoading } = useAuth();
   const navigate = useNavigate();
+
+  // Fetch therapists from backend
+  const fetchTherapists = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get('http://localhost:5001/api/therapist/all-therapists');
+      setTherapists(response.data.therapists);
+      setFilteredTherapists(response.data.therapists);
+      console.log(filteredTherapists);
+      
+    } catch (err) {
+      console.error('Failed to fetch therapists:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // Check if user is authenticated
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
       navigate('/login', { state: { from: '/therapists' } });
+    } else if (!isLoading && isAuthenticated) {
+      fetchTherapists();
     }
-  }, [isAuthenticated, isLoading, navigate]);
+  }, [isAuthenticated, isLoading]);
 
-  // Apply filters
+  // Filter logic
   const handleFilterChange = (newFilters) => {
+    setFilters(newFilters);
     setLoading(true);
-    
-    // Simulate API call delay
+
     setTimeout(() => {
-      let results = [...therapistsData];
-      
-      // Apply search query filter
-      if (newFilters.searchQuery) {
-        const query = newFilters.searchQuery.toLowerCase();
+      let results = [...therapists];
+
+      const {
+        searchQuery,
+        specialization,
+        priceRange,
+        minRating,
+        languages,
+        availability
+      } = newFilters;
+
+      if (searchQuery) {
+        const q = searchQuery.toLowerCase();
         results = results.filter(
-          therapist =>
-            therapist.name.toLowerCase().includes(query) ||
-            therapist.specialization.toLowerCase().includes(query)
+          t => t.name.toLowerCase().includes(q) || t.specialization.toLowerCase().includes(q)
         );
       }
-      
-      // Apply specialization filter
-      if (newFilters.specialization) {
+
+      if (specialization) {
+        results = results.filter(t => t.specialization === specialization);
+      }
+
+      if (priceRange) {
         results = results.filter(
-          therapist => therapist.specialization === newFilters.specialization
+          t =>
+            t.pricePerSession >= priceRange[0] &&
+            t.pricePerSession <= priceRange[1]
         );
       }
-      
-      // Apply price range filter
-      if (newFilters.priceRange) {
-        results = results.filter(
-          therapist =>
-            therapist.pricePerSession >= newFilters.priceRange[0] &&
-            therapist.pricePerSession <= newFilters.priceRange[1]
+
+      if (minRating) {
+        results = results.filter(t => t.rating >= minRating);
+      }
+
+      if (languages?.length) {
+        results = results.filter(t =>
+          languages.some(lang => t.languages.includes(lang))
         );
       }
-      
-      // Apply rating filter
-      if (newFilters.minRating) {
-        results = results.filter(
-          therapist => therapist.rating >= newFilters.minRating
+
+      if (availability?.length) {
+        results = results.filter(t =>
+          availability.some(slot => t.availability.includes(slot))
         );
       }
-      
-      // Apply languages filter
-      if (newFilters.languages && newFilters.languages.length > 0) {
-        results = results.filter(therapist =>
-          newFilters.languages.some(lang =>
-            therapist.languages.includes(lang)
-          )
-        );
-      }
-      
-      // Apply availability filter
-      if (newFilters.availability && newFilters.availability.length > 0) {
-        results = results.filter(therapist =>
-          newFilters.availability.some(avail =>
-            therapist.availability.includes(avail)
-          )
-        );
-      }
-      
+
       setFilteredTherapists(results);
-      setFilters(newFilters);
       setLoading(false);
-    }, 500);
+    }, 300);
   };
 
   return (
@@ -198,6 +102,7 @@ const Therapists = () => {
       <Navbar />
       <main className="flex-grow bg-gray-50 py-12">
         <div className="container-custom">
+          {/* Heading */}
           <div className="text-center mb-10">
             <h1 className="text-3xl font-bold text-oasis-dark mb-4">Find Your Therapist</h1>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -205,14 +110,12 @@ const Therapists = () => {
               Our professionals are here to support your mental health journey.
             </p>
           </div>
-          
+
           <div className="flex flex-col md:flex-row gap-6">
-            {/* Sidebar filters */}
             <div className="w-full md:w-64 flex-shrink-0">
               <TherapistFilters onFilterChange={handleFilterChange} />
             </div>
-            
-            {/* Therapist cards grid */}
+
             <div className="flex-grow">
               {loading ? (
                 <div className="flex justify-center items-center h-64">
@@ -221,7 +124,7 @@ const Therapists = () => {
               ) : filteredTherapists.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                   {filteredTherapists.map(therapist => (
-                    <TherapistCard key={therapist.id} {...therapist} />
+                    <TherapistCard key={therapist._id} {...therapist} />
                   ))}
                 </div>
               ) : (

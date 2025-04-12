@@ -86,3 +86,12 @@ export const therapistLogout = (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 };
+
+export const getAllTherapists = async (req, res) => {
+  try {
+    const therapists = await Therapist.find({}, '-password -__v'); // exclude password & __v
+    res.status(200).json({ success: true, therapists });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Failed to fetch therapists', error });
+  }
+};

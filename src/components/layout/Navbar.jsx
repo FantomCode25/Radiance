@@ -17,11 +17,11 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img 
-              src="/logo.svg" 
+              src="/logo.png" 
               alt="Mental Oasis Logo" 
               className="h-10 mr-2" 
             />
-            <span className="text-xl font-medium text-oasis-dark">Mental Oasis</span>
+            <span className="text-xl font-medium text-oasis-dark">ZenZone</span>
           </Link>
           
           {/* Desktop Navigation */}

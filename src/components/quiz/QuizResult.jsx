@@ -11,7 +11,6 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import Footer from "@/components/layout/Footer";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 
@@ -28,7 +27,7 @@ const QuizResult = ({
   const [isHovered, setIsHovered] = useState(false);
 
   // Determine result category based on score
-  const [showTherapists, setShowTherapists] = useState(false);
+  const [showTherapists, setShowTherapists] = useState(true);
   let resultCategory = "";
   let resultColor = "";
   let resultIcon = null;
@@ -68,7 +67,7 @@ const QuizResult = ({
     return stars;
   };
 
-  if (specialization === "No Need For Therapy") {
+  if (specialization == "No Need For Therapy") {
     resultCategory = "Good Mental Health";
     resultColor = "text-green-600";
     resultIcon = <Check className="w-8 h-8 text-green-600" />;
@@ -131,14 +130,13 @@ const QuizResult = ({
         </Button>
 
         {therapists.length > 0 && (
-          <Link to="/therapists">
+          
             <Button
               className="bg-oasis-primary hover:bg-oasis-primary/90 w-full sm:w-auto"
-              onClick={() => setShowTherapists(true)}
+              onClick={() => setShowTherapists(false)}
             >
               Book Appointment
             </Button>
-          </Link>
         )}
 
         <Link to="/resources">
@@ -153,7 +151,6 @@ const QuizResult = ({
     </div>
   ) : (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
       <main className="flex-grow bg-gray-50 py-12">
         <div className="container-custom">
           <div className="text-center mb-10">
@@ -168,96 +165,78 @@ const QuizResult = ({
               {therapists.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                   {therapists.map((therapist) => (
-                    <Card
-                      className={`overflow-hidden transition-all duration-300 h-full flex flex-col ${
-                        isHovered
-                          ? "shadow-lg transform -translate-y-1"
-                          : "shadow-md"
-                      }`}
-                      onMouseEnter={() => setIsHovered(true)}
-                      onMouseLeave={() => setIsHovered(false)}
-                    >
-                      <div className="relative">
-                        <img
-                          src={"/therapist-1.jpg"}
-                          alt={therapist.name}
-                          className="w-full h-48 object-cover object-center"
-                        />
-                        <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                          <div className="flex items-center">
-                            <div className="flex">{renderStars()}</div>
-                            <span className="ml-1 text-white text-sm">4</span>
+                    <Card 
+                    className={`overflow-hidden transition-all duration-300 h-full flex flex-col ${
+                      isHovered ? 'shadow-lg transform -translate-y-1' : 'shadow-md'
+                    }`}
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                  >
+                    <div className="relative">
+                      <img 
+                        src={therapist.image} 
+                        alt={therapist.name} 
+                        className="w-full h-48 object-cover object-center"
+                      />
+                      <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                        <div className="flex items-center">
+                          <div className="flex">{renderStars()}</div>
+                          <span className="ml-1 text-white text-sm">{therapist.rating.toFixed(1)}</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <CardHeader className="pb-2">
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <h3 className="text-lg font-semibold text-gray-900">{therapist.name}</h3>
+                          <p className="text-sm text-gray-500">{therapist.age} years old</p>
+                        </div>
+                        <Badge className="bg-oasis-primary hover:bg-oasis-primary/90">{therapist.specialization}</Badge>
+                      </div>
+                    </CardHeader>
+                    
+                    <CardContent className="flex-grow pb-4">
+                      <div className="space-y-3">
+                        <div className="flex items-center">
+                          <Clock className="w-4 h-4 text-gray-500 mr-2" />
+                          <span className="text-sm text-gray-700">Available: {therapist.availability}</span>
+                        </div>
+                        <div className="flex items-center">
+                          <Award className="w-4 h-4 text-gray-500 mr-2" />
+                          <span className="text-sm text-gray-700">{therapist.experience} years experience</span>
+                        </div>
+                        <div className="flex items-center">
+                          <VideoIcon className="w-4 h-4 text-gray-500 mr-2" />
+                          <span className="text-sm text-gray-700">${therapist.pricePerSession} per session</span>
+                        </div>
+                        <div className="pt-2">
+                          <div className="flex flex-wrap gap-1">
+                            {therapist.languages}
                           </div>
                         </div>
                       </div>
-
-                      <CardHeader className="pb-2">
-                        <div className="flex justify-between items-start">
-                          <div>
-                            <h3 className="text-lg font-semibold text-gray-900">
-                              {therapist.name}
-                            </h3>
-                            <p className="text-sm text-gray-500">
-                              age years old
-                            </p>
-                          </div>
-                          <Badge className="bg-oasis-primary hover:bg-oasis-primary/90">
-                            {specialization}
-                          </Badge>
-                        </div>
-                      </CardHeader>
-
-                      <CardContent className="flex-grow pb-4">
-                        <div className="space-y-3">
-                          <div className="flex items-center">
-                            <Clock className="w-4 h-4 text-gray-500 mr-2" />
-                            <span className="text-sm text-gray-700">
-                              Available: availability
-                            </span>
-                          </div>
-                          <div className="flex items-center">
-                            <Award className="w-4 h-4 text-gray-500 mr-2" />
-                            <span className="text-sm text-gray-700">
-                              {therapist.experience} years experience
-                            </span>
-                          </div>
-                          <div className="flex items-center">
-                            <VideoIcon className="w-4 h-4 text-gray-500 mr-2" />
-                            <span className="text-sm text-gray-700">
-                              $pricePerSession per session
-                            </span>
-                          </div>
-                          <div className="pt-2">
-                            <div className="flex flex-wrap gap-1">
-                              <span
-                                key={parseInt(Math.random() * 10000)}
-                                className="inline-block bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded"
-                              >
-                                languages
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </CardContent>
-
-                      <CardFooter className="flex-shrink-0 pt-0">
-                        <div className="grid grid-cols-2 gap-2 w-full">
-                          <Button
-                            variant="outline"
-                            className="w-full border-oasis-primary text-oasis-primary hover:bg-oasis-primary hover:text-white"
-                            onClick={handleViewProfile}
-                          >
-                            View Profile
-                          </Button>
-                          <Button
+                    </CardContent>
+                    
+                    <CardFooter className="flex-shrink-0 pt-0">
+                      <div className="grid grid-cols-2 gap-2 w-full">
+                        <Button 
+                          variant="outline" 
+                          className="w-full border-oasis-primary text-oasis-primary hover:bg-oasis-primary hover:text-white"
+                          onClick={handleViewProfile}
+                        >
+                          View Profile
+                        </Button>
+                        <Link to={`/therapists/${therapist.id}/session`}>
+                          <Button 
                             className="w-full bg-oasis-primary hover:bg-oasis-primary/90 text-white"
-                            onClick={handleBookSession}
                           >
                             Book Session
                           </Button>
-                        </div>
-                      </CardFooter>
-                    </Card>
+                        </Link>
+                      </div>
+                    </CardFooter>
+                  </Card>
                   ))}
                 </div>
               ) : (
@@ -274,7 +253,6 @@ const QuizResult = ({
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   );
 };

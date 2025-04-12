@@ -3,6 +3,7 @@ import {
   therapistSignup,
   therapistLogin,
   therapistLogout,
+  getAllTherapists,
 } from "../controllers/therapist.controller.js";
 
 const router = express.Router();
@@ -16,4 +17,5 @@ router.post("/therapist-login", therapistLogin);
 // Therapist logout
 router.post("/therapist-logout", therapistLogout);
 
+router.get("/all-therapists", getAllTherapists)
 export default router;

@@ -12,100 +12,100 @@ const quizQuestions = [
     id: 1,
     text: "I often feel hopeless",
     options: [
-      { id: "1-0", text: "Disagree", value: 0 },
-      { id: "1-1", text: "Neutral", value: 0.3 },
-      { id: "1-2", text: "Slightly Agree", value: 0.7 },
-      { id: "1-3", text: "Strongly Agree", value: 1 },
+      { id: "1-0", text: "Disagree", value: 1 },
+      { id: "1-1", text: "Neutral", value: 0.7 },
+      { id: "1-2", text: "Slightly Agree", value: 0.3 },
+      { id: "1-3", text: "Strongly Agree", value: 0 },
     ],
   },
   {
     id: 2,
     text: "I avoid public places due to fear",
     options: [
-      { id: "2-0", text: "Disagree", value: 0 },
-      { id: "2-1", text: "Neutral", value: 0.3 },
-      { id: "2-2", text: "Slightly Agree", value: 0.7 },
-      { id: "2-3", text: "Strongly Agree", value: 1 },
+      { id: "2-0", text: "Disagree", value: 1 },
+      { id: "2-1", text: "Neutral", value: 0.7 },
+      { id: "2-2", text: "Slightly Agree", value: 0.3 },
+      { id: "2-3", text: "Strongly Agree", value: 0 },
     ],
   },
   {
     id: 3,
     text: "I feel anxious for no reason",
     options: [
-      { id: "3-0", text: "Disagree", value: 0 },
-      { id: "3-1", text: "Neutral", value: 0.3 },
-      { id: "3-2", text: "Slightly Agree", value: 0.7 },
-      { id: "3-3", text: "Strongly Agree", value: 1 },
+      { id: "3-0", text: "Disagree", value: 1 },
+      { id: "3-1", text: "Neutral", value: 0.7 },
+      { id: "3-2", text: "Slightly Agree", value: 0.3 },
+      { id: "3-3", text: "Strongly Agree", value: 0 },
     ],
   },
   {
     id: 4,
     text: "I can't control my worries",
     options: [
-      { id: "4-0", text: "Disagree", value: 0 },
-      { id: "4-1", text: "Neutral", value: 0.3 },
-      { id: "4-2", text: "Slightly Agree", value: 0.7 },
-      { id: "4-3", text: "Strongly Agree", value: 1 },
+      { id: "4-0", text: "Disagree", value: 1 },
+      { id: "4-1", text: "Neutral", value: 0.7 },
+      { id: "4-2", text: "Slightly Agree", value: 0.3 },
+      { id: "4-3", text: "Strongly Agree", value: 0 },
     ],
   },
   {
     id: 5,
     text: "I have experienced trauma",
     options: [
-      { id: "5-0", text: "Disagree", value: 0 },
-      { id: "5-1", text: "Neutral", value: 0.3 },
-      { id: "5-2", text: "Slightly Agree", value: 0.7 },
-      { id: "5-3", text: "Strongly Agree", value: 1 },
+      { id: "5-0", text: "Disagree", value: 1 },
+      { id: "5-1", text: "Neutral", value: 0.7 },
+      { id: "5-2", text: "Slightly Agree", value: 0.3 },
+      { id: "5-3", text: "Strongly Agree", value: 0 },
     ],
   },
   {
     id: 6,
     text: "I have trouble sleeping",
     options: [
-      { id: "6-0", text: "Disagree", value: 0 },
-      { id: "6-1", text: "Neutral", value: 0.3 },
-      { id: "6-2", text: "Slightly Agree", value: 0.7 },
-      { id: "6-3", text: "Strongly Agree", value: 1 },
+      { id: "6-0", text: "Disagree", value: 1 },
+      { id: "6-1", text: "Neutral", value: 0.7 },
+      { id: "6-2", text: "Slightly Agree", value: 0.3 },
+      { id: "6-3", text: "Strongly Agree", value: 0 },
     ],
   },
   {
     id: 7,
     text: "I feel tired most days",
     options: [
-      { id: "7-0", text: "Disagree", value: 0 },
-      { id: "7-1", text: "Neutral", value: 0.3 },
-      { id: "7-2", text: "Slightly Agree", value: 0.7 },
-      { id: "7-3", text: "Strongly Agree", value: 1 },
+      { id: "7-0", text: "Disagree", value: 1 },
+      { id: "7-1", text: "Neutral", value: 0.7 },
+      { id: "7-2", text: "Slightly Agree", value: 0.3 },
+      { id: "7-3", text: "Strongly Agree", value: 0 },
     ],
   },
   {
     id: 8,
     text: "I avoid conversations",
     options: [
-      { id: "8-0", text: "Disagree", value: 0 },
-      { id: "8-1", text: "Neutral", value: 0.3 },
-      { id: "8-2", text: "Slightly Agree", value: 0.7 },
-      { id: "8-3", text: "Strongly Agree", value: 1 },
+      { id: "8-0", text: "Disagree", value: 1 },
+      { id: "8-1", text: "Neutral", value: 0.7 },
+      { id: "8-2", text: "Slightly Agree", value: 0.3 },
+      { id: "8-3", text: "Strongly Agree", value: 0 },
     ],
   },
   {
     id: 9,
     text: "I prefer isolation",
     options: [
-      { id: "9-0", text: "Disagree", value: 0 },
-      { id: "9-1", text: "Neutral", value: 0.3 },
-      { id: "9-2", text: "Slightly Agree", value: 0.7 },
-      { id: "9-3", text: "Strongly Agree", value: 1 },
+      { id: "9-0", text: "Disagree", value: 1 },
+      { id: "9-1", text: "Neutral", value: 0.7 },
+      { id: "9-2", text: "Slightly Agree", value: 0.3 },
+      { id: "9-3", text: "Strongly Agree", value: 0 },
     ],
   },
   {
     id: 10,
     text: "I get nervous in social settings",
     options: [
-      { id: "10-0", text: "Disagree", value: 0 },
-      { id: "10-1", text: "Neutral", value: 0.3 },
-      { id: "10-2", text: "Slightly Agree", value: 0.7 },
-      { id: "10-3", text: "Strongly Agree", value: 1 },
+      { id: "10-0", text: "Disagree", value: 1 },
+      { id: "10-1", text: "Neutral", value: 0.7 },
+      { id: "10-2", text: "Slightly Agree", value: 0.3 },
+      { id: "10-3", text: "Strongly Agree", value: 0 },
     ],
   },
 ];
@@ -153,7 +153,7 @@ const handleNextQuestion = async () => {
 
     // Call Gradio AI model
     try {
-      const client = await Client.connect("SrujanBillava/Ai_Matcher");
+      const client = await Client.connect("SrujanBillava/ML_Matching");
       const result = await client.predict("/predict", {
         email: "user@example.com", // Or fetch from user's auth profile
         param_1: selectedLabels[0],
@@ -172,9 +172,9 @@ const handleNextQuestion = async () => {
 
       setTherapistsResult(result.data[0].therapists)
 
-      console.log("Recommended Therapists:", result.data.specialization);
+      console.log("Recommended Therapists:", result.data[0].specialization);
 
-      setSpecialization(result.data.specialization)
+      setSpecialization(result.data[0].specialization)
     } catch (err) {
       console.error("AI Matching failed:", err);
     }
