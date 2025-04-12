@@ -1,4 +1,4 @@
-# 🚀 Project Name
+# 🚀 ZenZone - Mental Health Platform for Everyone
 
 **Team Name:** Radiance <br>
 **Hackathon:** FantomCode 2025  <br>
