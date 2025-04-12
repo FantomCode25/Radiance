@@ -1,7 +1,7 @@
 # 🚀 Project Name
 
-**Team Name:** Radiance 
-**Hackathon:** FantomCode 2025  
+**Team Name:** Radiance <br>
+**Hackathon:** FantomCode 2025  <br>
 **Date:** 12/04/2025
 
 ---
