@@ -1,0 +1,7 @@
+gradio==5.24.0
+pandas
+numpy
+joblib
+scikit-learn
+openpyxl
+pymongo
